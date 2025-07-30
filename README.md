@@ -2,37 +2,22 @@
 
 `magic-assert` is a lightweight assertion library for TypeScript and JavaScript, designed to collect assertion errors and throw them all at once. This allows your code to continue executing until you explicitly check for failures.
 
+You can use it in any testing framework, where you want to complete the e2e journey but also want to know the issues found in the end without exiting the flow in the middle.
+
+> How will this help?
+> 
+> If using `node:assert` or any other similar assertion library, the error is thrown the instant an error is found, 
+> which results in execution halt in the middle, but using `magic-assert` we can now complete the e2e journey flow to 
+> verify everything works and checking all important verifications along the way.
+> Like this we find bugs and also verify the user journey works perfectly fine.
+
+---
+
 ## Features
 
 - Collects multiple assertion errors before throwing.
 - Simple API for common assertions.
 - Works seamlessly with TypeScript and JavaScript.
-
----
-
-## Usage
-
-```ts
-import { MagicAssert } from 'magic-assert';
-
-class Test {        
-    private magicAssert = new MagicAssert();
-
-    fun() {
-        this.magicAssert.isUndefined(undefined, "This should pass");
-        this.magicAssert.isTrue(true, "This should also pass");
-        // Add more assertions as needed
-        this.magicAssert.assertAll(); // Throws if any assertion failed
-    }
-}
-
-const test = new Test();
-test.fun();
-```
-
-**Notes:**
-- Always call `assertAll()` at the end to throw collected errors.
-- If `assertAll()` is not called, execution continues even if assertions fail.
 
 ---
 
@@ -58,20 +43,6 @@ assertAll(): void
 ```
 
 ---
-
-## TypeScript Integration
-
-If you encounter issues with TypeScript declarations, you can create a custom module declaration:
-
-Create a `magic-assert.d.ts` file in your project root:
-
-```ts
-declare module 'magic-assert' {
-    export class MagicAssert {
-        // Add required function signatures as needed
-    }
-}
-```
 
 Now you can import and use `MagicAssert` anywhere in your project:
 
@@ -100,11 +71,17 @@ Actual: magic is not equal to Expected: assert
 ```
 
 ---
+**Notes:**
+- Always call `assertAll()` at the end to throw collected errors.
+- If `assertAll()` is not called, execution continues even if assertions fail.
+
+
+---
 
 ## Best Practices
 
 - Use descriptive messages for each assertion to make debugging easier.
-- Call `assertAll()` where you want to throw collected errors.
+- Call `assertAll()` whenever and wherever you want to throw collected errors.
 
 ---
 
