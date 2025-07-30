@@ -1,11 +1,11 @@
 {
   "name": "magic-assert",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "soft assertions",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npm run tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json"
   },
   "exports": {
     ".": {

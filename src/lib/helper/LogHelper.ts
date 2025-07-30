@@ -15,6 +15,6 @@ export const throwAssertionErrors = (
     )
     .join("\n");
   throw new Error(
-    `Assertion errors detected. See details below (expand in Allure report):\n${errorMessages}`
+    `Assertion errors detected.\n${errorMessages}`
   );
 };
